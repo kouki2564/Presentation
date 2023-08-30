@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class blockMove : MonoBehaviour
 {
-    Vector3 scale;
-
     Vector3 startPosTop;
     Vector3 startPosMiddle;
     Vector3 startPosUnder;
@@ -19,14 +17,12 @@ public class blockMove : MonoBehaviour
 
     void Start()
     {
-        scale = new Vector3(0.5f, 0.5f, 0.5f);
-        transform.localScale= scale;
         randnum = Random.Range(1, 4);
-        startPosUnder = new Vector3(1.295f, 0.1f, 0);
-        startPosMiddle = new Vector3(1.295f, 0.53f, 0);
-        startPosTop = new Vector3(1.295f, 0.96f, 0);
-        endPos = new Vector3(-1.8f, 0, 0);
-        move = new Vector3(-0.03f, 0, 0);
+        startPosUnder = new Vector3(2.578f, 0.2f, 0);
+        startPosMiddle = new Vector3(2.578f, 1.06f, 0);
+        startPosTop = new Vector3(2.578f, 1.92f, 0);
+        endPos = new Vector3(-3.8f, 0, 0);
+        move = new Vector3(-0.06f, 0, 0);
         switch(randnum)
         {
             case 1:

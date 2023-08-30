@@ -15,7 +15,7 @@ public class YusyaMove : MonoBehaviour
 
     public bool ReturnFlag;
     //public float JumpPow;
-    Vector3 JumpPow = new Vector3(0f, 5f, 0);
+    Vector3 JumpPow = new Vector3(0f, 7.5f, 0);
 
     int timer;
 
@@ -23,9 +23,9 @@ public class YusyaMove : MonoBehaviour
     {
 
         timer = 0;
-        SetPos = new Vector3(-0.7f, 0.27f, 0);
+        SetPos = new Vector3(-1.4f, 0.255f, 0);
         Move = new Vector3(0, 0.005f, 0);
-        ReturnMove = new Vector3(5f, 0, 0);
+        ReturnMove = new Vector3(10f, 0, 0);
         ReturnFlag = false;
     //    JumpPow = 400;
         rbody = GetComponent<Rigidbody2D>();
@@ -62,6 +62,7 @@ public class YusyaMove : MonoBehaviour
                 jumpCount++;
             }            
         }
+        
     }
         
     private void OnTriggerEnter2D(Collider2D other)                 // “–‚½‚è”»’è‚ðŽ@’m
