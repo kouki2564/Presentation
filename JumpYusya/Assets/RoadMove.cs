@@ -12,9 +12,9 @@ public class RoadMove : MonoBehaviour
     
     void Start()
     {
-        StartPos = new Vector3(1.73f, -0.06f,0);
-        EndPos = new Vector3(endposX, 0, 0);
-        Move = new Vector3(-0.05f, 0, 0);
+        StartPos = new Vector3(1.235f, -0.06f,0);
+        EndPos = new Vector3(-3.24f, 0, 0);
+        Move = new Vector3(-0.03f, 0, 0);
     }
 
     void FixedUpdate()

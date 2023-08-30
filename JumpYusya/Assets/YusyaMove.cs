@@ -5,16 +5,17 @@ using UnityEngine;
 public class YusyaMove : MonoBehaviour
 {
     Vector3 Move;
-    Vector2 JumpForce;
     Vector3 SetPos;
     Vector3 ReturnMove;
-    Vector3 PushPos;
 
     Rigidbody2D rbody;
 
+    public int MaxJumpCount = 2;
+    private int jumpCount = 0;
+
     public bool ReturnFlag;
-    bool JumpFlag;
-    public float JumpPow;
+    //public float JumpPow;
+    Vector3 JumpPow = new Vector3(0f, 5f, 0);
 
     int timer;
 
@@ -24,12 +25,9 @@ public class YusyaMove : MonoBehaviour
         timer = 0;
         SetPos = new Vector3(-0.7f, 0.27f, 0);
         Move = new Vector3(0, 0.005f, 0);
-        ReturnMove = new Vector3(0.15f, 0, 0);
-        PushPos = new Vector3(-0.05f, 0, 0);
+        ReturnMove = new Vector3(5f, 0, 0);
         ReturnFlag = false;
-        JumpPow = 200;
-        JumpForce = new Vector2(0, JumpPow);
-        JumpFlag = false;
+    //    JumpPow = 400;
         rbody = GetComponent<Rigidbody2D>();
     }
 
@@ -40,81 +38,36 @@ public class YusyaMove : MonoBehaviour
         // 左側に行った後の位置復帰
         if (transform.position.x < SetPos.x)
         {
-            transform.position += ReturnMove;
+            rbody.AddForce(ReturnMove);
         }
-        //if (!ReturnFlag) transform.position += PushPos;
-
-        //if (jumpflag)
-        //{
-        //    timer = 0;
-        //    rbody.addforce(jumpforce);
-        //    if (timer == 30)
-        //    {
-
-        //        jumpflag=false;
-        //    }
-        //}
+        if(transform.position.x >= SetPos.x)
+        {
+            rbody.velocity = new Vector2(0, rbody.velocity.y);
+        }
         
 
     }
-
-    //void Jump()
-    //{
-    //    Debug.Log(ReturnFlag);
-    //    if (ReturnFlag) return;
-    //    if (Input.GetKeyDown(KeyCode.Space))
-    //    {
-    //        Debug.Log("space");
-    //        rbody.AddForce(JumpForce);
-    //        ReturnFlag = true;
-    //    }
-    //}
         
     void Update()
+    {
+        if ((Input.GetMouseButtonDown(0)))
         {
-        Debug.Log(ReturnFlag);
-        if ((Input.GetKeyDown(KeyCode.Space))&& (!ReturnFlag))
-        {
-            Debug.Log("space");
-            rbody.AddForce(JumpForce);
-            ReturnFlag = true;
-        }
-            // ジャンプ
-            //if (Input.GetKey(KeyCode.A))
-            //{
-            //    JumpFlag = true;
-            //    Debug.Log("space");
+            if (jumpCount < MaxJumpCount)
+            {
+                Debug.Log(jumpCount);
 
-            //    //if (transform.position.y < 0.3f) JumpFlag = false;
-            //}
+                rbody.velocity = Vector2.zero;
+
+                rbody.AddForce(JumpPow, ForceMode2D.Impulse);
+                jumpCount++;
+            }            
         }
+    }
         
     private void OnTriggerEnter2D(Collider2D other)                 // 当たり判定を察知
         
     {
-            
-        if (ReturnFlag)
-            
-        {
-                
-            if (other.gameObject.name == "road")
-                
-            {
-
-                ReturnFlag = false;
-                
-            }
-                
-            if (other.gameObject.name == "road(1)")
-                
-            {
-
-                ReturnFlag = false;
-                
-            }
-            
-        }
-        
+        jumpCount = 0;
     }
     
 }
