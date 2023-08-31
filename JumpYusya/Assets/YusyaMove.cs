@@ -62,7 +62,7 @@ public class YusyaMove : MonoBehaviour
                 jumpCount++;
             }            
         }
-        
+        if (transform.position.x < -3) transform.position = SetPos;
     }
         
     private void OnTriggerEnter2D(Collider2D other)                 // “–‚½‚è”»’è‚ðŽ@’m
